@@ -13,6 +13,7 @@
         "vcpkg"
       ],
       "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/build/${presetName}/installed",
       "cacheVariables": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_COMPILE_WARNING_AS_ERROR": true

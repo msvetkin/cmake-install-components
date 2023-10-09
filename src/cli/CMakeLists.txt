@@ -7,5 +7,5 @@ target_sources(${cict_executable_target} PRIVATE src/main.cpp)
 
 target_link_libraries(${cict_executable_target}
   PRIVATE
-    cict::core
+    cict::http
 )

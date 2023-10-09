@@ -11,17 +11,21 @@ include(GNUInstallDirs)
 # generaete header with export macro
 function(_cict_module_generate_export_headers target)
   set(export_file_dir "${CMAKE_CURRENT_BINARY_DIR}/include/cict")
-  generate_export_header(${module_target}
+  generate_export_header(${target}
     EXPORT_FILE_NAME "${export_file_dir}/${module_name}/export.hpp"
   )
 
   target_include_directories(
-    ${module_target} ${module_type}
+    ${target} ${module_type}
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
   )
 
   if (TARGET cict)
-    install(DIRECTORY ${export_file_dir} TYPE INCLUDE)
+    install(
+      DIRECTORY ${export_file_dir}
+      TYPE INCLUDE
+      # COMPONENT ${target}
+    )
   endif()
 endfunction()
 
@@ -55,8 +59,20 @@ function(add_cict_module module_name)
 
   if (TARGET cict)
     target_link_libraries(cict INTERFACE ${module_target})
-    install(TARGETS ${module_target} EXPORT cict-targets)
-    install(DIRECTORY include/cict TYPE INCLUDE)
+    install(
+      TARGETS ${module_target}
+      EXPORT cict-targets
+      RUNTIME DESTINATION lib
+      LIBRARY DESTINATION lib
+      ARCHIVE DESTINATION lib
+      # LIBRARY
+      # COMPONENT ${module_target}
+    )
+    install(
+      DIRECTORY include/cict
+      TYPE INCLUDE
+      # COMPONENT ${module_target}
+    )
   endif()
 
   set(cict_module_target

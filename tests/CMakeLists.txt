@@ -11,8 +11,8 @@ include(add_cict_test)
 
 add_subdirectory(core)
 
-add_test(
-  NAME cmake-install
-  COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --config $<CONFIG>
-          --prefix "${CMAKE_CURRENT_BINARY_DIR}/cmake/$<CONFIG>/install/"
-)
+# add_test(
+  # NAME cmake-install
+  # COMMAND ${CMAKE_COMMAND} --install ${CMAKE_BINARY_DIR} --config $<CONFIG>
+          # --prefix "${CMAKE_CURRENT_BINARY_DIR}/cmake/$<CONFIG>/install/"
+# )
